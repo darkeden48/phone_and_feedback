@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/phone_and_feedback/static/css/main.31d6cfe0.css",
+    "main.js": "/phone_and_feedback/static/js/main.b113b989.js",
+    "index.html": "/phone_and_feedback/index.html",
+    "main.b113b989.js.map": "/phone_and_feedback/static/js/main.b113b989.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.b113b989.js"
+  ]
+}
