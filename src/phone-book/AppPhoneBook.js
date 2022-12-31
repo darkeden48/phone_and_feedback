@@ -1,6 +1,8 @@
 import React from "react";
 import Contacts from "./contacts/Contacts";
 import Form from "./form/Form";
+import Filter from "./filter/Filter";
+import { nanoid } from "nanoid";
 
 export default class AppPhoneBook extends React.Component {
   state = {
@@ -10,13 +12,48 @@ export default class AppPhoneBook extends React.Component {
       { id: "id-3", name: "Eden Clements", number: "645-17-79" },
       { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
     ],
-    name: "",
+    filter: "",
   };
+
+  formSubmit = (contact) => {
+    const inputId = nanoid();
+    if (
+      this.state.contacts.find(
+        (el) => el.name.toLowerCase() === contact.name.toLowerCase()
+      )
+    ) {
+      alert(contact.name + " is already in contacts :=)");
+      return;
+    }
+    this.setState((prev) => ({
+      contacts: [...prev.contacts, { ...contact, id: inputId }],
+    }));
+  };
+
+  onChangeFilter = (e) => {
+    this.setState({
+      filter: e.target.value,
+    });
+  };
+
+  deleteContact = (id) => {
+    this.setState({
+      contacts: this.state.contacts.filter((el) => el.id !== id),
+    });
+  };
+
   render() {
+    const { filter, contacts } = this.state;
+    const filtered = contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(filter)
+    );
     return (
       <>
-        <Form />
-        <Contacts contacts={this.state.contacts} />
+        <h1>Phonebook</h1>
+        <Form onSubmit={this.formSubmit} />
+        <Filter filter={this.state.filter} onChange={this.onChangeFilter} />
+        <h2>Contacts</h2>
+        <Contacts contacts={filtered} deleteContact={this.deleteContact} />
       </>
     );
   }
