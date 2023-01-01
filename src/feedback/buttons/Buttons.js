@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Buttons({ options, onLeaveFeedback }) {
   const arrayState = Object.keys(options);
@@ -12,3 +13,8 @@ export default function Buttons({ options, onLeaveFeedback }) {
     </ul>
   );
 }
+
+Buttons.propTypes = {
+  options: PropTypes.object,
+  onLeaveFeedback: PropTypes.func,
+};

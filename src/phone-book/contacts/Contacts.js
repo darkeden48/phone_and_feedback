@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Contacts({ contacts, deleteContact }) {
   return (
@@ -14,3 +15,8 @@ export default function Contacts({ contacts, deleteContact }) {
     </ul>
   );
 }
+
+Contacts.propTypes = {
+  contacts: PropTypes.array,
+  deleteContact: PropTypes.func,
+};
