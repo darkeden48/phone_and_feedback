@@ -15,6 +15,21 @@ export default class AppPhoneBook extends React.Component {
     filter: "",
   };
 
+  componentDidMount() {
+    const preparseContacts = localStorage.getItem("contacts");
+    this.setState({
+      contacts: JSON.parse(preparseContacts),
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("dfdgh");
+    if (this.state.contacts !== prevState.contacts) {
+      //*
+      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+  }
+
   formSubmit = (contact) => {
     const inputId = nanoid();
     if (
