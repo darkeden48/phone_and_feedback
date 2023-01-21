@@ -47,14 +47,18 @@ export default function AppPhoneBook() {
   const filtered = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter)
   );
-
+  console.log(contacts);
   return (
     <>
       <h1>Phonebook</h1>
       <Form onSubmit={formSubmit} />
       <Filter filter={filter} onChange={onChangeFilter} />
       <h2>Contacts</h2>
-      <Contacts contacts={filtered} deleteContact={deleteContact} />
+      {contacts.length === 0 ? (
+        <p>Phonebook is empty</p>
+      ) : (
+        <Contacts contacts={filtered} deleteContact={deleteContact} />
+      )}
     </>
   );
 }

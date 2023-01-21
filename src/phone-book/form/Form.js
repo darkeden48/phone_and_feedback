@@ -2,7 +2,7 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 
-export default function Form() {
+export default function Form({ onSubmit }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
@@ -19,15 +19,13 @@ export default function Form() {
         setNumber(e.currentTarget.value);
         break;
       default:
-        setName("");
-        setNumber("");
+        return;
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.dir(Form);
-    // onSubmit({ name, number });
+    onSubmit({ name, number });
     reset();
   };
 
@@ -37,7 +35,7 @@ export default function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="phone-form">
       <label htmlFor={nameId}>
         Name
         <input

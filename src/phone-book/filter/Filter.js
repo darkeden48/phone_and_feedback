@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export default function Filter({ filter, onChange }) {
   return (
-    <label>
+    <label className="filter">
       Filter by name
       <input
         type="text"
